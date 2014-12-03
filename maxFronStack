@@ -1,0 +1,19 @@
+public static int maxFromStack(Stack<Integer> in) {
+		int max = 0;
+		int curr = in.pop();
+		
+		if (in.isEmpty()) {
+			in.push(curr);
+			return curr;
+		} 
+		else
+			max = maxFromStack(in);
+		
+		if (curr > max)
+			
+			max = curr;
+		
+		in.push(curr);
+		
+		return max;
+	}
