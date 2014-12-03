@@ -1,0 +1,31 @@
+public static void queueSort(Queue<Integer> in) {
+		int size = in.size();
+		
+		for (; size > 0; size--) {
+			int max = Integer.MIN_VALUE;
+			
+			for (int i = 1; i <= size; i++) {
+				int curr = in.dequeue();
+				in.enqueue(curr);
+				if (max < curr)
+					max = curr;
+			}
+			
+			for (int k = 1; k <= in.size() - size; k++)
+				in.enqueue(in.dequeue());
+			int currSize = in.size();
+			
+			for (int j = 1; j <= size; j++) {
+				int curr = in.dequeue();
+				if (curr != max)
+					in.enqueue(curr);
+			}
+			int count = currSize - in.size();
+			
+			for (int k = 1; k <= count; k++)
+				in.enqueue(max);
+
+			for (int k = 1; k <= in.size() - size; k++)
+				in.enqueue(in.dequeue());
+		}
+	}
